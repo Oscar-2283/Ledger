@@ -1,0 +1,31 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+release/
+*.app
+*.exe
+
+# Database
+*.db
+
+# Electron cache
+.cache/
+
+# IDE
+.vscode/
+.idea/
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+REQUIREMENTS_IMPLEMENTATION.md
+
+# Environment
+.env

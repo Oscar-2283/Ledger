@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-base: #0A0A0F;
+    --bg-card: rgba(255, 255, 255, 0.08);
+    --text-primary: #EDEDEF;
+    --text-secondary: #8A8F98;
+    --border-color: rgba(255, 255, 255, 0.06);
+    --input-bg: #0F0F12;
+    --input-border: rgba(255, 255, 255, 0.1);
+  }
+
+  :root.light {
+    --bg-base: #F5F5F7;
+    --bg-card: rgba(255, 255, 255, 0.8);
+    --text-primary: #1D1D1F;
+    --text-secondary: #6E6E73;
+    --border-color: rgba(0, 0, 0, 0.1);
+    --input-bg: #FFFFFF;
+    --input-border: rgba(0, 0, 0, 0.15);
+  }
+
+  body {
+    @apply antialiased;
+    font-family: 'Inter', 'Geist Sans', system-ui, sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(
+      to bottom,
+      var(--text-primary),
+      color-mix(in srgb, var(--text-primary) 95%, transparent),
+      color-mix(in srgb, var(--text-primary) 70%, transparent)
+    );
+  }
+
+  .text-gradient-accent {
+    @apply bg-gradient-to-r from-accent via-indigo-400 to-accent bg-clip-text text-transparent;
+    background-size: 200%;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl rounded-2xl transition-all duration-300;
+    background: linear-gradient(
+      to bottom,
+      var(--bg-card),
+      color-mix(in srgb, var(--bg-card) 25%, transparent)
+    );
+    border: 1px solid var(--border-color);
+  }
+
+  .glass-input {
+    @apply border focus:border-accent focus:ring-2 focus:ring-accent/50 rounded-lg px-4 py-2.5 transition-all duration-200;
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+  }
+
+  .glass-input::placeholder {
+    color: var(--text-secondary);
+  }
+
+  .btn-primary {
+    @apply bg-accent hover:bg-accent-bright text-white rounded-lg px-6 py-2.5 font-medium transition-all duration-200;
+    box-shadow: 0 0 0 1px rgba(94, 106, 210, 0.5),
+      0 4px 12px rgba(94, 106, 210, 0.3),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(94, 106, 210, 0.6),
+      0 8px 20px rgba(94, 106, 210, 0.4),
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.25);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-secondary {
+    @apply rounded-lg px-6 py-2.5 font-medium transition-all duration-200 border;
+    background-color: color-mix(in srgb, var(--text-primary) 5%, transparent);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-2px);
+    background-color: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  }
+
+  .btn-danger {
+    @apply bg-red-500/10 hover:bg-red-500/20 text-red-500 hover:text-red-600 rounded-lg px-6 py-2.5 font-medium transition-all duration-200 border border-red-500/30;
+  }
+
+  .btn-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+  }
+
+  :root .card-shadow {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 2px 20px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.2);
+  }
+
+  :root.light .card-shadow {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.06),
+      0 2px 20px rgba(0, 0, 0, 0.1), 0 0 40px rgba(0, 0, 0, 0.05);
+  }
+
+  :root .card-shadow-hover {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1),
+      0 8px 40px rgba(0, 0, 0, 0.5), 0 0 80px rgba(94, 106, 210, 0.1);
+  }
+
+  :root.light .card-shadow-hover {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1),
+      0 8px 40px rgba(0, 0, 0, 0.15), 0 0 80px rgba(94, 106, 210, 0.15);
+  }
+
+  /* Text color utilities */
+  .text-primary {
+    color: var(--text-primary);
+  }
+
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  /* Background utilities for surfaces */
+  .bg-surface-01 {
+    background-color: color-mix(in srgb, var(--text-primary) 5%, transparent);
+  }
+
+  .bg-surface-02 {
+    background-color: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  }
+
+  .bg-surface-03 {
+    background-color: color-mix(in srgb, var(--text-primary) 10%, transparent);
+  }
+
+  .bg-surface-04 {
+    background-color: color-mix(in srgb, var(--text-primary) 2%, transparent);
+  }
+
+  .hover\:bg-surface-01:hover {
+    background-color: color-mix(in srgb, var(--text-primary) 5%, transparent);
+  }
+
+  .hover\:bg-surface-02:hover {
+    background-color: color-mix(in srgb, var(--text-primary) 8%, transparent);
+  }
+
+  .hover\:bg-surface-03:hover {
+    background-color: color-mix(in srgb, var(--text-primary) 10%, transparent);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
